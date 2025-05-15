@@ -54,6 +54,8 @@ jobs:
 
       - name: Lint code for consistent style
         uses: HeRoMo/pronto-action@v1.62.0
+          env:
+            GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           runner: rubocop brakeman scss eslint_npm --exit-code
           github_token: ${{ secrets.GITHUB_TOKEN }}
