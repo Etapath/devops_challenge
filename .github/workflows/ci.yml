@@ -8,6 +8,8 @@ on:
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
 
     steps:
       - name: Checkout code
