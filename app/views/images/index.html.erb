@@ -10,24 +10,28 @@
     <%= link_to "New image", new_image_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
-  <div id="images" class="min-w-full divide-y divide-gray-200 space-y-5">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-5">
+
     <% if @images.any? %>
       <% @images.each do |image| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <div>
-            <div>
-              <%= image.name %>
-            </div>
-            <%= render partial: "images/thumbnail", locals: { image: image } %>
-          </div>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", image, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", image, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
+      <div class="grid gap-4">
+        <div>
+          <%= render partial: "images/thumbnail", locals: { image: image } %>
+
+          <%= link_to image, class: "flex items-center flex-wrap-0 gap-2 w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 font-medium mt-2 hover:underline hover:text-blue-600" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            <span><%= image.name %></span>
+          <% end %>
         </div>
+
+      </div>
+
       <% end %>
+
     <% else %>
       <p class="text-center my-10">No images found.</p>
     <% end %>
   </div>
 </div>
+
+

@@ -1,4 +1,4 @@
-class ImageResizerJob < ApplicationJob
+class ImageDesaturationJob < ApplicationJob
   queue_as :default
 
   def perform(image_id)
@@ -9,7 +9,7 @@ class ImageResizerJob < ApplicationJob
 
     # Use MiniMagick to resize
     resized = MiniMagick::Image.read(original.download)
-    resized.resize "100x100"
+    resized.colorspace("Gray")
 
     image.thumbnail.attach(
       io: StringIO.new(resized.to_blob),
