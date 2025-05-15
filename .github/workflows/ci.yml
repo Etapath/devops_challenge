@@ -51,7 +51,11 @@ jobs:
           bundler-cache: true
 
       - name: Lint code for consistent style
-        run: bin/rubocop -f github
+        uses: HeRoMo/pronto-action@v1.62.0
+        with:
+          runner: rubocop brakeman scss eslint_npm --exit-code
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          formatters: annotations github_status
 
   test:
     runs-on: ubuntu-latest
@@ -74,7 +78,7 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y imagemagick build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
 
       - name: Checkout code
         uses: actions/checkout@v4
