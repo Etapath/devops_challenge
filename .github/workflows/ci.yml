@@ -59,11 +59,8 @@ jobs:
           # bundler-cache: true
 
       - name: Lint code for consistent style
-        uses: HeRoMo/pronto-action@v1.62.0
-        with:
-          runner: rubocop brakeman scss eslint_npm --exit-code
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          formatters: annotations github_status
+        run: bin/rubocop -f github
+
 
   test:
     runs-on: ubuntu-latest
