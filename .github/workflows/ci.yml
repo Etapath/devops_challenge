@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
+      BUNDLE_WITHOUT: ''
 
     steps:
       - name: Checkout code
