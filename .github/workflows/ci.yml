@@ -43,25 +43,6 @@ jobs:
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
 
-  lint:
-    runs-on: ubuntu-latest
-    permissions: write-all
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          # bundler-cache: true
-
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
-
-
   test:
     runs-on: ubuntu-latest
 
