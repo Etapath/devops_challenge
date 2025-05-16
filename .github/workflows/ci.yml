@@ -5,12 +5,14 @@ on:
   push:
     branches: [ main ]
 
+env:
+  BUNDLE_WITHOUT: ""
+
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      BUNDLE_WITHOUT: ''
 
     steps:
       - name: Checkout code
